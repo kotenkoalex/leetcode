@@ -7,12 +7,12 @@ import java.util.List;
 //https://leetcode.com/problems/palindrome-number/
 public class Task9_PalindromeNumber {
     public static void main(String[] args) {
-        System.out.println(isPalindromeNumber(101));
+        System.out.println(isPalindromeNumberV1(101));
     }
 
-    public static boolean isPalindromeNumber(int x) {
+    //version 1, complexity: O(n), because
+    public static boolean isPalindromeNumberV1(int x) {
         String[] number = Integer.toString(x).split("");
-
         if (number.length == 1) {
             return true;
         } else if (number.length % 2 == 0) {
@@ -26,5 +26,10 @@ public class Task9_PalindromeNumber {
             Collections.reverse(secondHalfReversed);
             return firstHalf.equals(secondHalfReversed);
         }
+    }
+
+    //version 2, complexity: , idea:
+    public static boolean isPalindromeNumberV2(int x) {
+        return false;
     }
 }
