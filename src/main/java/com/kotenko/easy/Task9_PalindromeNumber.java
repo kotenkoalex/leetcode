@@ -1,35 +1,52 @@
 package com.kotenko.easy;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 //https://leetcode.com/problems/palindrome-number/
 public class Task9_PalindromeNumber {
     public static void main(String[] args) {
-        System.out.println(isPalindromeNumberV1(101));
+        System.out.println(isPalindromeNumberAttempt1(121));
+        System.out.println(isPalindromeNumberAttempt1(-121));
+        System.out.println(isPalindromeNumberAttempt1(10));
+
+        System.out.println(isPalindromeNumberAttempt2(121));
+        System.out.println(isPalindromeNumberAttempt2(-121));
+        System.out.println(isPalindromeNumberAttempt2(10));
     }
 
-    //version 1, complexity: O(n), because
-    public static boolean isPalindromeNumberV1(int x) {
-        String[] number = Integer.toString(x).split("");
-        if (number.length == 1) {
-            return true;
-        } else if (number.length % 2 == 0) {
-            List<String> firstHalf = Arrays.asList(Arrays.copyOfRange(number, 0, number.length / 2));
-            List<String> secondHalfReversed = Arrays.asList(Arrays.copyOfRange(number, number.length / 2, number.length));
-            Collections.reverse(secondHalfReversed);
-            return firstHalf.equals(secondHalfReversed);
-        } else {
-            List<String> firstHalf = Arrays.asList(Arrays.copyOfRange(number, 0, number.length / 2));
-            List<String> secondHalfReversed = Arrays.asList(Arrays.copyOfRange(number, number.length / 2 + 1, number.length));
-            Collections.reverse(secondHalfReversed);
-            return firstHalf.equals(secondHalfReversed);
+    //version 1, not the best, because not follow requirements + had limits based on int range:
+    //Follow up: Could you solve it without converting the integer to a string?
+    public static boolean isPalindromeNumberAttempt1(int x) {
+        if (x < 0) {
+            return false;
         }
+        return x == Integer.parseInt(new StringBuilder(String.valueOf(x)).reverse().toString());
     }
 
-    //version 2, complexity: , idea:
-    public static boolean isPalindromeNumberV2(int x) {
+    //version 2, followed of requirements, but runtime 18%, memory 8%
+    public static boolean isPalindromeNumberAttempt2(int x) {
+        if (x < 0) {
+            return false;
+        }
+        ArrayList<Integer> digits = new ArrayList<>();
+        boolean condition = true;
+        while (condition) {
+            if (x > 0) {
+                digits.add(x % 10);
+                x = x / 10;
+            } else {
+                condition = false;
+            }
+        }
+        ArrayList<Integer> reversed = new ArrayList<>(digits);
+        Collections.reverse(reversed);
+        return digits.equals(reversed);
+    }
+
+    //to be continued
+    public static boolean isPalindromeNumberAttempt3(int x) {
+        //TODO
         return false;
     }
 }
