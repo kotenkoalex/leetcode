@@ -1,6 +1,7 @@
 package com.kotenko.easy;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 //https://leetcode.com/problems/two-sum/description/
 public class Task1_TwoSum {
@@ -25,7 +26,15 @@ public class Task1_TwoSum {
     }
 
     //version 2, complexity: O(n), idea: create hash table number:index
-    public static int[] twoSumV2(int[] nums, int target) {
-        return null;
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+        return new int[0];
     }
 }
