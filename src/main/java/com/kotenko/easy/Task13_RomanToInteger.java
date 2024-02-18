@@ -3,6 +3,7 @@ package com.kotenko.easy;
 import java.util.HashMap;
 import java.util.Map;
 
+//https://leetcode.com/problems/roman-to-integer/
 public class Task13_RomanToInteger {
     private static final Map<String, Integer> ONE_LETTER_SET = new HashMap<>();
 
@@ -28,13 +29,13 @@ public class Task13_RomanToInteger {
     }
 
     public static void main(String[] args) {
-//        System.out.println(extracted("III"));
-//        System.out.println(extracted("LVIII"));
-//        System.out.println(extracted("MCMXCIV")); //doesn't work
-        System.out.println(romanToInteger("MCMXCIV"));
+//        System.out.println(romanToIntegerV1("III"));
+//        System.out.println(romanToIntegerV1("LVIII"));
+//        System.out.println(romanToIntegerV1("MCMXCIV")); //doesn't work
+        System.out.println(romanToIntegerV2("MCMXCIV"));
     }
 
-    private static Integer extracted(String number) {
+    private static Integer romanToIntegerV1(String number) {
         Integer result = 0;
         if (number.length() == 1) {
             return ONE_LETTER_SET.get(number);
@@ -79,7 +80,7 @@ public class Task13_RomanToInteger {
         }
     }
 
-    private static Integer romanToInteger(String s) {
+    private static Integer romanToIntegerV2(String s) {
         Map<Character, Integer> romanValues = new HashMap<>();
         romanValues.put('I', 1);
         romanValues.put('V', 5);
